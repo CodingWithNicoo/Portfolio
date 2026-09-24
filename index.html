@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Atelier — Nico</title>
+
+  <meta
+    name="description"
+    content="Portfolio of a creative developer working across web design, UI/UX and front-end development."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet"
+  >
+  
+  <style>
+
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    :root {
+      --sage: #2c3e2e;
+      --sage-light: #607263;
+
+      --cream: #f4f1ea;
+      --paper: #ebe7dd;
+      --paper-dark: #ddd8cc;
+
+      --charcoal: #242823;
+      --muted: #73776f;
+
+      --line: rgba(36, 40, 35, 0.15);
+
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =====================================================
+       SUBTLE FILM GRAIN
+    ===================================================== */
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: 9999;
+
+      opacity: 0.035;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    .nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      padding: 25px 4vw;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      z-index: 20;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 27px;
+      height: 27px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--charcoal);
+      border-radius: 50%;
+
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--sage);
+
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+      min-height: 100vh;
+
+      padding: 150px 4vw 80px;
+
+      display: grid;
+      grid-template-columns:
+        .5fr
+        2fr
+        .9fr;
+
+      gap: 5vw;
+
+      align-items: end;
+    }
+
+    .hero-index {
+      align-self: start;
+
+      padding-top: 25px;
+
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .eyebrow {
+      margin-bottom: 25px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      color: var(--sage-light);
+
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(70px, 10vw, 155px);
+
+      font-weight: 400;
+      line-height: .82;
+
+      letter-spacing: -.065em;
+    }
+
+    h1 em {
+      display: block;
+      margin-left: 16%;
+    }
+
+    .hero-description {
+      max-width: 320px;
+
+      padding-bottom: 5px;
+
+      font-size: 14px;
+      line-height: 1.7;
+
+      color: #60645d;
+    }
+
+    .availability {
+      margin-top: 28px;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #718470;
+    }
+
+    .scroll-note {
+      position: absolute;
+
+      bottom: 28px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+    }
+
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
+    .intro {
+      padding: 120px 10vw 150px;
+
+      display: grid;
+      grid-template-columns: .7fr 2fr;
+
+      gap: 8vw;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .section-number {
+      font-family: var(--mono);
+      font-size: 9px;
+
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .intro-copy h2 {
+      max-width: 850px;
+
+      font-family: var(--serif);
+      font-size: clamp(44px, 5.5vw, 78px);
+
+      font-weight: 400;
+      line-height: .98;
+
+      letter-spacing: -.045em;
+    }
+
+    .intro-copy h2 em {
+      color: var(--sage);
+    }
+
+    .intro-copy p {
+      max-width: 600px;
+
+      margin-top: 42px;
+
+      color: #686c64;
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* =====================================================
+       WORK
+    ===================================================== */
+
+    .work {
+      padding: 120px 4vw 150px;
+
+      background: var(--sage);
+      color: var(--cream);
+    }
+
+    .work-heading {
+      margin-bottom: 100px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .work-heading h2 {
+      font-family: var(--serif);
+      font-size: clamp(55px, 7vw, 105px);
+
+      font-weight: 400;
+      line-height: .85;
+
+      letter-spacing: -.055em;
+    }
+
+    .work-heading p {
+      width: 250px;
+
+      color: rgba(244, 241, 234, .58);
+
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =====================================================
+       PROJECT
+    ===================================================== */
+
+    .project {
+      display: grid;
+
+      grid-template-columns: 1.55fr .7fr;
+
+      gap: 7vw;
+
+      align-items: center;
+
+      margin-bottom: 160px;
+    }
+
+    .project:last-child {
+      margin-bottom: 0;
+    }
+
+    .project.reverse {
+      grid-template-columns: .7fr 1.55fr;
+    }
+
+    .project.reverse .project-preview {
+      order: 2;
+    }
+
+    .project.reverse .project-info {
+      order: 1;
+    }
+
+    /* =====================================================
+       BROWSER FRAME
+    ===================================================== */
+
+    .browser {
+      overflow: hidden;
+
+      background: #e8e4db;
+
+      border-radius: 5px;
+
+      box-shadow:
+        0 35px 80px rgba(0,0,0,.22),
+        0 8px 20px rgba(0,0,0,.12);
+
+      transform: rotate(-1deg);
+
+      transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+    }
+
+    .project.reverse .browser {
+      transform: rotate(1deg);
+    }
+
+    .browser:hover {
+      transform: translateY(-7px) rotate(0);
+      box-shadow:
+        0 45px 90px rgba(0,0,0,.27),
+        0 10px 25px rgba(0,0,0,.14);
+    }
+
+    .browser-bar {
+      height: 34px;
+
+      padding: 0 12px;
+
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      background: #dedbd1;
+
+      border-bottom: 1px solid #ccc8bd;
+    }
+
+    .browser-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #a5a49d;
+    }
+
+    .browser-url {
+      margin-left: 12px;
+
+      font-family: var(--mono);
+      font-size: 7px;
+
+      color: #73766f;
+    }
+
+    /* =====================================================
+       LUGANO OIL LIVE PREVIEW
+    ===================================================== */
+
+    .live-site {
+      width: 100%;
+      height: 520px;
+
+      border: 0;
+
+      display: block;
+
+      background: #090e18;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-top: 28px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
+
+      border-bottom: 1px solid rgba(244,241,234,.5);
+
+      padding-bottom: 5px;
+
+      transition: opacity .2s ease;
+    }
+
+    .project-link:hover {
+      opacity: .65;
+    }
+
+    /* =====================================================
+       PROJECT INFORMATION
+    ===================================================== */
+
+    .project-info {
+      max-width: 330px;
+    }
+
+    .project-number {
+      margin-bottom: 24px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      color: rgba(244,241,234,.43);
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .project-info h3 {
+      margin-bottom: 24px;
+
+      font-family: var(--serif);
+      font-size: 43px;
+
+      font-weight: 400;
+      line-height: .95;
+
+      letter-spacing: -.035em;
+    }
+
+    .project-info p {
+      color: rgba(244,241,234,.64);
+
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-top: 25px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+
+      border: 1px solid rgba(244,241,234,.2);
+
+      border-radius: 100px;
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* =====================================================
+       SECOND PROJECT — STATIC EDITORIAL PREVIEW
+    ===================================================== */
+
+    .editorial-preview {
+      min-height: 470px;
+
+      padding: 35px;
+
+      position: relative;
+
+      background: #e8e3d8;
+
+      color: var(--charcoal);
+    }
+
+    .editorial-top {
+      display: flex;
+      justify-content: space-between;
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      text-transform: uppercase;
+    }
+
+    .editorial-title {
+      margin-top: 90px;
+
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 78px);
+
+      line-height: .83;
+
+      letter-spacing: -.06em;
+    }
+
+    .editorial-title em {
+      display: block;
+      margin-left: 22%;
+    }
+
+    .editorial-block {
+      position: absolute;
+
+      right: 30px;
+      bottom: 30px;
+
+      width: 30%;
+      height: 36%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #aab1a2,
+          #667267 55%,
+          #343e36
+        );
+
+      box-shadow: 0 18px 35px rgba(0,0,0,.15);
+    }
+
+    .editorial-caption {
+      position: absolute;
+
+      left: 35px;
+      bottom: 30px;
+
+      font-family: var(--mono);
+      font-size: 7px;
+
+      color: #72766e;
+
+      text-transform: uppercase;
+    }
+
+    /* =====================================================
+       ABOUT / PROCESS
+    ===================================================== */
+
+    .process {
+      padding: 140px 10vw;
+
+      display: grid;
+      grid-template-columns: .8fr 1.5fr;
+
+      gap: 10vw;
+
+      background: #e8e4da;
+    }
+
+    .process h2 {
+      margin-top: 25px;
+
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 82px);
+
+      font-weight: 400;
+      line-height: .9;
+
+      letter-spacing: -.05em;
+    }
+
+    .process-description {
+      max-width: 600px;
+
+      margin-top: 35px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =====================================================
+       CODE
+    ===================================================== */
+
+    .code-window {
+      overflow: hidden;
+
+      margin-top: 30px;
+
+      background: #252b26;
+
+      border-radius: 5px;
+
+      box-shadow:
+        0 30px 60px rgba(0,0,0,.15);
+    }
+
+    .code-header {
+      height: 42px;
+
+      padding: 0 15px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .code-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .code-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #626960;
+    }
+
+    .code-file {
+      margin-left: auto;
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      color: #858d84;
+    }
+
+    pre {
+      overflow-x: auto;
+
+      padding: 28px;
+
+      color: #d5d8ce;
+
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .keyword {
+      color: #c1cda9;
+    }
+
+    .string {
+      color: #d0b88f;
+    }
+
+    .comment {
+      color: #70786e;
+    }
+
+    .property {
+      color: #aebea8;
+    }
+
+    /* =====================================================
+       SKILLS
+    ===================================================== */
+
+    .skills {
+      padding: 130px 4vw;
+    }
+
+    .skills-heading {
+      display: grid;
+      grid-template-columns: .7fr 2fr;
+
+      margin-bottom: 90px;
+    }
+
+    .skills-heading h2 {
+      font-family: var(--serif);
+      font-size: clamp(55px, 7vw, 100px);
+
+      font-weight: 400;
+      line-height: .85;
+
+      letter-spacing: -.055em;
+    }
+
+    .skill-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .skill {
+      min-height: 100px;
+
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+
+      align-items: center;
+
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-number {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .skill-name {
+      font-family: var(--serif);
+      font-size: 30px;
+    }
+
+    .skill-detail {
+      color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      text-align: right;
+    }
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+
+    .contact {
+      min-height: 80vh;
+
+      padding: 120px 4vw;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      background: var(--paper-dark);
+    }
+
+    .contact-top {
+      display: flex;
+      justify-content: space-between;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      color: #686c65;
+
+      text-transform: uppercase;
+    }
+
+    .contact h2 {
+      max-width: 1000px;
+
+      font-family: var(--serif);
+      font-size: clamp(65px, 11vw, 165px);
+
+      font-weight: 400;
+      line-height: .82;
+
+      letter-spacing: -.065em;
+    }
+
+    .contact h2 em {
+      display: block;
+      margin-left: 15%;
+
+      color: var(--sage);
+    }
+
+    .contact-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .email {
+      font-family: var(--mono);
+      font-size: 11px;
+
+      border-bottom: 1px solid var(--charcoal);
+
+      padding-bottom: 5px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 20px;
+
+      font-family: var(--mono);
+      font-size: 9px;
+
+      text-transform: uppercase;
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+      padding: 20px 4vw;
+
+      display: flex;
+      justify-content: space-between;
+
+      background: var(--sage);
+
+      color: rgba(244,241,234,.6);
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(24px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .hero {
+        padding: 140px 6vw 100px;
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+      }
+
+      .hero-index {
+        writing-mode: initial;
+        transform: none;
+      }
+
+      .intro {
+        padding: 100px 6vw;
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .work {
+        padding: 100px 6vw;
+      }
+
+      .project,
+      .project.reverse {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .project.reverse .project-preview,
+      .project.reverse .project-info {
+        order: initial;
+      }
+
+      .project-info {
+        max-width: 520px;
+      }
+
+      .process {
+        padding: 100px 6vw;
+
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+      }
+
+      .skills {
+        padding: 100px 6vw;
+      }
+
+      .skills-heading {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .nav {
+        padding: 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .hero {
+        padding: 130px 6vw 90px;
+      }
+
+      h1 {
+        font-size: clamp(62px, 18vw, 100px);
+      }
+
+      h1 em {
+        margin-left: 7%;
+      }
+
+      .work-heading {
+        display: block;
+
+        margin-bottom: 70px;
+      }
+
+      .work-heading p {
+        margin-top: 30px;
+      }
+
+      .live-site {
+        height: 420px;
+      }
+
+      .browser {
+        transform: none !important;
+      }
+
+      .project-info h3 {
+        font-size: 38px;
+      }
+
+      .editorial-preview {
+        min-height: 360px;
+      }
+
+      .skill {
+        grid-template-columns: 42px 1fr;
+
+        padding: 25px 0;
+      }
+
+      .skill-detail {
+        grid-column: 2;
+
+        margin-top: 8px;
+
+        text-align: left;
+      }
+
+      .skill-name {
+        font-size: 24px;
+      }
+
+      .contact {
+        padding: 100px 6vw;
+      }
+
+      .contact h2 {
+        font-size: clamp(58px, 17vw, 100px);
+      }
+
+      .contact-bottom {
+        display: block;
+      }
+
+      .socials {
+        margin-top: 30px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       NAVIGATION
+  ===================================================== -->
+
+  <nav class="nav">
+
+    <a href="#" class="logo">
+      <span class="logo-mark">A</span>
+      Atelier / Dev
+    </a>
+
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </nav>
+
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
+
+  <header class="hero">
+
+    <div class="hero-index">
+      Portfolio / 2026
+    </div>
+
+    <div class="hero-title reveal">
+
+      <div class="eyebrow">
+        Web design · Front-end development
+      </div>
+
+      <h1>
+        Quiet
+        <em>interfaces.</em>
+      </h1>
+
+    </div>
+
+    <div class="hero-description reveal">
+
+      I design and build thoughtful websites where
+      visual identity, usability and clean code work together.
+
+      <div class="availability">
+        <span class="availability-dot"></span>
+        Available for selected projects
+      </div>
+
+    </div>
+
+    <div class="scroll-note">
+      ↓ Scroll to explore
+    </div>
+
+  </header>
+
+  <!-- =====================================================
+       INTRO
+  ===================================================== -->
+
+  <section class="intro">
+
+    <div class="section-number">
+      01 / Approach
+    </div>
+
+    <div class="intro-copy reveal">
+
+      <h2>
+        Digital work with a
+        <em>human rhythm.</em>
+      </h2>
+
+      <p>
+        I work across interface design and front-end development,
+        creating responsive websites with a focus on typography,
+        hierarchy, usability and visual detail.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       WORK
+  ===================================================== -->
+
+  <section class="work" id="work">
+
+    <div class="work-heading">
+
+      <h2>
+        Selected<br>
+        work.
+      </h2>
+
+      <p>
+        A selection of websites and digital experiences
+        designed and developed with HTML, CSS and JavaScript.
+      </p>
+
+    </div>
+
+    <!-- ===================================================
+         PROJECT 01 — LUGANO OIL
+    ==================================================== -->
+
+    <article class="project reveal">
+
+      <div class="project-preview">
+
+        <div class="browser">
+
+          <div class="browser-bar">
+
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+
+            <span class="browser-url">
+              lugano-oil.github.io/Lugano-Oil/
+            </span>
+
+          </div>
+          
+          <iframe
+            class="live-site"
+            src="https://lugano-oil.github.io/Lugano-Oil/"
+            title="Lugano Oil website preview"
+            loading="lazy"
+          ></iframe>
+
+        </div>
+
+      </div>
+
+
+      <div class="project-info">
+
+        <div class="project-number">
+          01 — Web Design / Development
+        </div>
+
+        <h3>
+          Lugano<br>
+          Oil
+        </h3>
+
+        <p>
+          A corporate website for Lugano Oil SA,
+          built around a dark navy interface, restrained
+          gold accents and a clear information hierarchy.
+        </p>
+
+        <div class="tags">
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Responsive</span>
+
+        </div>
+
+        <a
+          class="project-link"
+          href="https://lugano-oil.github.io/Lugano-Oil/"
+          target="_blank"
+          rel="noopener"
+        >
+          View live project ↗
+        </a>
+
+      </div>
+
+    </article>
+
+    <!-- ===================================================
+         PROJECT 02
+    ==================================================== -->
+
+    <article class="project reverse reveal">
+
+      <div class="project-preview">
+
+        <div class="browser">
+
+          <div class="browser-bar">
+
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+
+            <span class="browser-url">
+              selected-work / editorial
+            </span>
+
+          </div>
+
+          <div class="editorial-preview">
+
+            <div class="editorial-top">
+              <span>Studio / 002</span>
+              <span>Digital experience</span>
+            </div>
+
+            <div class="editorial-title">
+              Form
+              <em>and matter.</em>
+            </div>
+
+            <div class="editorial-block"></div>
+
+            <div class="editorial-caption">
+              Interface study / 2026
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="project-info">
+
+        <div class="project-number">
+          02 — Interface / Concept
+        </div>
+
+        <h3>
+          Editorial<br>
+          Interface
+        </h3>
+
+        <p>
+          An experimental responsive interface exploring
+          editorial typography, asymmetric layouts and
+          restrained interaction.
+        </p>
+
+        <div class="tags">
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">UI / UX</span>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <!-- =====================================================
+       PROCESS / CODE
+  ===================================================== -->
+
+  <section class="process">
+
+    <div>
+
+      <div class="section-number">
+        03 / Under the surface
+      </div>
+
+      <h2>
+        Designed<br>
+        in code.
+      </h2>
+
+      <p class="process-description">
+        I keep the technology focused and understandable.
+        The goal is not to use a complicated stack for its
+        own sake, but to build websites that are responsive,
+        maintainable and visually considered.
+      </p>
+
+    </div>
+
+
+    <div class="code-window">
+
+      <div class="code-header">
+
+        <div class="code-dots">
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+          <span class="code-dot"></span>
+        </div>
+
+        <div class="code-file">
+          responsive-layout.css
+        </div>
+
+      </div>
+
+<pre><code><span class="comment">/* A simple responsive layout */</span>
+
+<span class="keyword">.project</span> {
+  <span class="property">display</span>: grid;
+  <span class="property">grid-template-columns</span>: 1.5fr .7fr;
+  <span class="property">gap</span>: 7vw;
+  <span class="property">align-items</span>: center;
+}
+
+<span class="keyword">@media</span> (max-width: 900px) {
+
+  <span class="keyword">.project</span> {
+    <span class="property">grid-template-columns</span>: 1fr;
+  }
+
+}
+
+<span class="comment">
+/* Simple technology.
+   Careful design. */
+</span></code></pre>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       SKILLS
+  ===================================================== -->
+
+  <section class="skills" id="skills">
+
+    <div class="skills-heading">
+
+      <div class="section-number">
+        04 / Capabilities
+      </div>
+
+      <h2>
+        What I<br>
+        make.
+      </h2>
+
+    </div>
+
+
+    <div class="skill-list">
+
+      <div class="skill reveal">
+
+        <div class="skill-number">01</div>
+
+        <div class="skill-name">
+          Web Design
+        </div>
+
+        <div class="skill-detail">
+          Layout · Typography · Visual systems
+        </div>
+
+      </div>
+
+
+      <div class="skill reveal">
+
+        <div class="skill-number">02</div>
+
+        <div class="skill-name">
+          UI / UX
+        </div>
+
+        <div class="skill-detail">
+          Interfaces · Hierarchy · Usability
+        </div>
+
+      </div>
+
+
+      <div class="skill reveal">
+
+        <div class="skill-number">03</div>
+
+        <div class="skill-name">
+          Front-end Development
+        </div>
+
+        <div class="skill-detail">
+          HTML · CSS · JavaScript
+        </div>
+
+      </div>
+
+
+      <div class="skill reveal">
+
+        <div class="skill-number">04</div>
+
+        <div class="skill-name">
+          Responsive Design
+        </div>
+
+        <div class="skill-detail">
+          Desktop · Tablet · Mobile
+        </div>
+
+      </div>
+
+
+      <div class="skill reveal">
+
+        <div class="skill-number">05</div>
+
+        <div class="skill-name">
+          Website Optimization
+        </div>
+
+        <div class="skill-detail">
+          Performance · Accessibility · Structure
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       CONTACT
+  ===================================================== -->
+
+  <section class="contact" id="contact">
+
+    <div class="contact-top">
+
+      <span>05 / Contact</span>
+      <span>Available worldwide</span>
+
+    </div>
+
+    <h2 class="reveal">
+      Have something
+      <em>interesting?</em>
+    </h2>
+
+    <div class="contact-bottom">
+
+      <a
+        class="email"
+        href="mailto:nicolasmalaguti12@gmail.com"
+      >
+        nicolasmalaguti12@gmail.com
+      </a>
+
+      <div class="socials">
+
+        <a href="#" target="https://github.com/CodingWithNicoo">
+          GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+
+  <footer>
+
+    <span>
+      © 2026 Nico / Dev
+    </span>
+
+    <span>
+      Built with HTML · CSS · JavaScript
+    </span>
+
+  </footer>
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
+  <script>
+    
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+    
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+  </script>
+
+</body>
+</html>
