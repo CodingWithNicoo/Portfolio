@@ -869,15 +869,18 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      gap: 30px;
     }
 
     .email {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: clamp(18px, 3.2vw, 42px);
+      font-weight: 500;
 
-      border-bottom: 1px solid var(--charcoal);
+      border-bottom: 2px solid var(--charcoal);
 
-      padding-bottom: 5px;
+      padding-bottom: 8px;
+      word-break: break-all;
     }
 
     .socials {
@@ -1186,7 +1189,7 @@
   </section>
 
   <!-- =====================================================
-        CONTACT (Ubicado justo después de la primera página / Intro)
+        CONTACT
   ===================================================== -->
 
   <section class="contact" id="contact">
